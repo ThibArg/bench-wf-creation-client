@@ -55,7 +55,7 @@ gConnectToNuxeo = new Nuxeo({
 
 // Create an import folder at domain level
 console.log("Creating the import folder at " + DOMAIN_PATH + "...");
-folderTitle = "Import-" + (new Date()).toISOString().substring(0, 19);
+folderTitle = "" + (new Date()).toISOString().substring(0, 19) + "-" + NB_TO_CREATE + "-" + SLEEP_MS;
 importFolder = {
 	"entity-type": "document",
 	"name": folderTitle,
