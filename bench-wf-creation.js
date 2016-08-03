@@ -21,6 +21,7 @@ var Nuxeo = require('nuxeo'),
     //path = require('path'),
     gConfig, gConnectToNuxeo, gImportFolderId,
     gCount, gMessageSuffix,
+    gStartTime,
     importFolder, folderTitle;
 // Read from gConfig
 var DOMAIN_PATH, NB_TO_CREATE, SLEEP_MS;
@@ -79,6 +80,8 @@ gConnectToNuxeo.repository()
 
 function createAllDocs() {
 
+	gStartTime = new Date();
+
 	// Just to avoid doing stupid useless things
 	if(typeof gImportFolderId !== "string" || gImportFolderId === "") {
 		console.error("No gImportFolderId");
@@ -111,7 +114,7 @@ function createOneDoc() {
 	gConnectToNuxeo.repository()
 		.create(gImportFolderId, newDoc)
 		.then(function(doc) {
-			console.log("Created: " + doc.title);
+			//console.log("Created: " + doc.title);
 			if((gCount % 50) === 0) {
 				console.log("Created: " + gCount + gMessageSuffix);
 			}
@@ -131,8 +134,12 @@ function createOneDoc() {
 }
 
 function endOfTest() {
+	var now, duration;
+	now = new Date();
+	duration = "" + ((now - gStartTime) / 1000) + " seconds";
   	console.log("--------------------------------------------------");
 	console.log("END OF TEST. Documents created: " + gCount + gMessageSuffix);
+	console.log("DURATION: " + duration)
   	console.log("--------------------------------------------------");
 }
 
