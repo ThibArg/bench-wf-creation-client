@@ -1,5 +1,19 @@
 /* To be used with node.js.
 bench-wf-creation.js
+
+IMPORTANT: You must have a config-localhost.json at same level of this script.
+Example of such configuration file:
+
+{
+  "baseUrl": "http://localhost:8080/nuxeo/",
+  "login": "Administrator",
+  "password": "Administrator",
+
+  "domainPath": "/default-domain",
+
+  "nbFileCreate": 100,
+  "sleepMs": 50
+}
 */
 var Nuxeo = require('nuxeo'),
 	//http = require('http'),
